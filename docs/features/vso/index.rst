@@ -46,8 +46,8 @@ Abstract
 
 Vehicle Service Orchestrator (VSO) is a Multi-node Scenario Evidence Layer for Eclipse SDV S-CORE.
 
-VSO defines multi-node scenario contracts (pipeline chains) and subscribes to runtime/diagnostic/platform signals.
-monitors pipeline execution determinism, detects policy violations at scenario level, and correlates evidence using scenario_run_id.
+VSO defines multi-node scenario contracts (pipeline chains) and subscribes to runtime/diagnostic/platform signals. 
+It monitors pipeline execution determinism, detects policy violations at scenario level, and correlates evidence using scenario_run_id.
 
 VSO does NOT own diagnostic fault lifecycle, does NOT decide Function Group State, and does NOT execute application lifecycle.
 VSO hands off determinism evidence packages and conditionRefs to Safety Managers for final safety decisions and approvals. 
@@ -60,7 +60,7 @@ Execution is performed by S-CORE Lifecycle.
 - VSO observes multi-node scenario pipelines
 - VSO detects determinism policy violations
 - VSO generates structured evidence
-- VSO delivers evidence packages for decisions and statemanagement.
+- VSO delivers evidence packages for decisions and state management.
 
 Execution remains in S-CORE Lifecycle. Safety Decisions remain external to S-CORE.
 
@@ -75,7 +75,7 @@ Problem Statement
 -----------------
 
 Modern SDV scenario pipelines (L3 Highway, Parking/Valet, ADAS services) span HPC, Zonal Controllers and ECUs.
-Policy based decisions become ineffective without VSO Evidences, such as decisions to switch Autonomous mode to Manual mode, or degrade to a lower ASIL level.
+Policy based decisions become ineffective without VSO evidence, such as decisions to switch Autonomous mode to Manual mode, or degrade to a lower ASIL level.
 Pipeline stages have timing, resource, dependency and diagnostic constraints.
 
 **What goes wrong without VSO:**
@@ -85,7 +85,7 @@ Pipeline stages have timing, resource, dependency and diagnostic constraints.
 - Orchestrators may accidentally become state decision makers
 - Diagnostic fault lifecycle and scenario policy lifecycle may be mixed
 - Debug escalation is ad-hoc and not contract-driven
-- Lack of structured evidence for safety decsisions and learning
+- Lack of structured evidence for safety decisions and learning
 - Fleet/cloud analysis loses context and root-cause evidence
 - No standard for multi-node scenario evidence layer
 - Missing determinism monitoring layer
@@ -373,20 +373,20 @@ For Developers
 --------------
 
 - Scenario-level root-cause evidence
-- Evidences escalation by contract
+- Evidence escalation by contract
 - Reusable sample scenarios (L3 Highway, Parking/Valet)
 
 For Platform
 ------------
 
-- Clear boundaries with Diagnostics/State/Lifecycle
+- Clear boundaries with Diagnostics/Lifecycle/State Management
 - Reduced duplicate orchestration logic
 - Reusable evidence package model
 - Modular integration with existing S-CORE components
 
 For OEMs/Tier-1s
 ----------------
-- Better decision making (decisions to switch Autonomous mode to Manual mode, or degrade to a lower ASIL level.)
+- Better decision making (e.g., decisions to switch from Autonomous mode to Manual mode, or degrade to a lower ASIL level)
 - Fleet learning readiness
 - Operational degradation traceability
 - Structured evidence for safety analysis
@@ -403,7 +403,7 @@ Backwards Compatibility
 
 - VSO operates as a passive observer consuming existing diagnostic/runtime signals
 - OEM State Manager integration is optional and OEM-specific
-- VSO can operate as PerNode in virtualization scenario as well as multi node scenario
+- VSO can operate as per-node in a virtualization scenario as well as a multi-node scenario
 - Existing fault management and lifecycle workflows remain fully preserved
 
 VSO can be enabled or disabled via the feature flag without affecting existing S-CORE functionality.
@@ -437,7 +437,7 @@ Safety Impact
 The Vehicle Service Orchestrator is classified as **ASIL_B** due to its role in managing safety-critical workloads.
 
 While the orchestrator does not directly implement safety functions (e.g., braking, steering),
-it ensure the runtime decisions and resource guarantees necessary for safety-critical applications to meet their timing and reliability requirements.
+it ensures the runtime decisions and resource guarantees necessary for safety-critical applications to meet their timing and reliability requirements.
 A failure in the orchestrator's resource allocation, timing enforcement, or automatic recovery mechanisms could indirectly impact safety by:
 
 - Causing timing violations in ASIL-D applications (e.g., delayed object detection in AEB)
@@ -468,12 +468,12 @@ No license restrictions prevent the implementation of an open-source Vehicle Ser
 How to Teach This
 =================
 
-For developers the Vehicle Service Orchestrator will feel familiar with automotive-specific extensions for ASIL levels and real-time constraints.
+For developers, the Vehicle Service Orchestrator will feel familiar with automotive-specific extensions for ASIL levels and real-time constraints.
 
 For automotive engineers unfamiliar with containers, the following learning path is recommended:
 
 1. **Declarative Configuration:** Learn Manifest-based deployment vs. imperative scripting
-2. **Mixed-Criticality Concepts:** Understand ASIL_Based resource allocation and FFI
+2. **Mixed-Criticality Concepts:** Understand ASIL-based resource allocation and FFI
 3. **Orchestration Patterns:** Learn automatic recovery, health checks, and state management
 4. **Vehicle-Specific Adaptations:** Understand timing probes, scenario-based automation, and constrained resource management
 
@@ -497,4 +497,3 @@ Footnotes
 =========
 .. [#v1] "Vehicle Service Orchestrator: A Multi-node Scenario Evidence Layer for Eclipse SDV S-CORE", Eclipse Foundation,
 .. [#v2] "ISO 26262 Road vehicles — Functional safety", ISO, https://www.iso.org/standard/68383.html.
-
